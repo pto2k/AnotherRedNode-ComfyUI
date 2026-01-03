@@ -1,0 +1,7 @@
+pyperclip>=1.8
+logging
+folder_paths
+torch
+hashlib
+PIL 
+pillow_heif
