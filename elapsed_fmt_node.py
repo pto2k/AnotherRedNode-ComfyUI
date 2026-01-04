@@ -27,11 +27,14 @@ class ElapsedFmt:
         else:
             sec, ms = divmod(ms, 1000)
             if sec < 60:
-                # 只在ms>0时显示毫秒
-                if ms > 0:
-                    formatted_time = f"{sec:d}s{ms:03d}ms"
+                # 1秒到1分钟，显示为小数形式的秒
+                total_seconds = sec + (ms / 1000)
+                
+                # 如果是整数秒，直接显示为xs，否则保留一位小数
+                if total_seconds.is_integer():
+                    formatted_time = f"{int(total_seconds)}s"
                 else:
-                    formatted_time = f"{sec:d}s"
+                    formatted_time = f"{total_seconds:.1f}s"
             else:
                 min, sec = divmod(sec, 60)
                 if min < 60:
